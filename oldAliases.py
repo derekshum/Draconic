@@ -1,3 +1,5 @@
+#aliases at project start
+
 !alias balm embed 
 {{cc = "Channel Divinity"}}
 {{counterExists=cc_exists(cc)}}
