@@ -25,8 +25,6 @@ cc_current = cc_str(cc_name)
 return_string += (
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f'-footer "{ctx.prefix}{ctx.alias} [# ki (optional, default 3)]"'
-    #f'-footer "SOURCE | {"@"+"USERNAME"}" '
-    #f'-thumb {image} '
     )
 return return_string
 </drac2>
