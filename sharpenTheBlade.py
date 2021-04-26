@@ -1,8 +1,8 @@
 !alias sharpen tembed
 <drac2>
 if len(&ARGS&) > 0:
-    arg = argparse(&ARGS&).last
-    cc_request = int(arg) #ki points to spend
+    args = &ARGS&
+    cc_request = int(args[0][0]) #ki points to spend
 else:
     cc_request = 3
 cc_name = "Ki Points"
@@ -24,6 +24,7 @@ else:
 cc_current = cc_str(cc_name)
 return_string += (
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
+    f'-footer "{ctx.prefix}{ctx.alias} [# ki (optional, default 3)]"'
     #f'-footer "SOURCE | {"@"+"USERNAME"}" '
     #f'-thumb {image} '
     )
