@@ -13,7 +13,19 @@ ability_name = "Focused Aim"
 cc_name = "Ki Points"
 cc_value = character().get_cc(cc_name)
 return_string = ""
-if cc_request <= cc_value and cc_request >= 1 and cc_request <= 3:
+if cc_request < 1 or cc_request > 3:
+    cc_use = 0
+    return_string = (
+        f' -title "{name} fails to use {ability_name}!" '
+        f' -desc "{str(args[0])} is not a valid input. {ability_name} spends 1 to 3 {cc_name}." '
+        )
+elif cc_value < cc_request:
+    cc_use = 0
+    return_string = (
+        f' -title "{name} fails to use {ability_name}!" '
+        f' -desc "Not enough {cc_name}." '
+        )
+else:
     cc_use = cc_request
     character().mod_cc(cc_name, -cc_request)
     attack_roll_bonus = cc_use * 2
@@ -26,12 +38,6 @@ if cc_request <= cc_value and cc_request >= 1 and cc_request <= 3:
         return_string += (
             f'-f "New Attack Roll | {disp_num} + {attack_roll_bonus} = {disp_num + attack_roll_bonus}|inline" '
             )
-else:
-    cc_use = 0
-    return_string = (
-        f' -title "{name} fails to use {ability_name}!" '
-        f' -desc "Not enough {cc_name}." '
-        )
 cc_current = cc_str(cc_name)
 return_string += (
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
