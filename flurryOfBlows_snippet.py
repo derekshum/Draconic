@@ -8,7 +8,7 @@ if cc_value >= 1:
         f' -f "Flurry of Blows|Immediately after you take the Attack action on your turn, you can spend 1 ki point to make two unarmed strikes as a bonus action.\n\n**{cc_name} (-1)** {cc_str(cc_name)}"'
         )
 else:
-    return_string = (f' -f "Not enough {cc_name} for Flurry of Blows.\n\n**{cc_name}** {cc_str(cc_name)}"')
+    return_string = (f' -f "Not enough {cc_name} for Flurry of Blows: **{cc_name}** {cc_str(cc_name)}"')
 return return_string
 </drac2>
     
