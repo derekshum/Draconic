@@ -18,9 +18,9 @@ if cc_request <= cc_value and cc_request >= 1 and cc_request <= 3:
     character().mod_cc(cc_name, -cc_request)
     attack_roll_bonus = cc_use * 2
     return_string = (
-        f'-title "{name} uses {ability_name}!" '
-        f'-desc "When you miss with an attack roll, you can spend 1 to 3 ki points to increase your attack roll by 2 for each of these ki points you spend, potentially turning the miss into a hit." '
-        f'-f "Attack Roll Bonus | +{attack_roll_bonus}|inline" '
+        f' -title "{name} uses {ability_name}!" '
+        f' -desc "When you miss with an attack roll, you can spend 1 to 3 ki points to increase your attack roll by 2 for each of these ki points you spend, potentially turning the miss into a hit." '
+        f' -f "Attack Roll Bonus | +{attack_roll_bonus}|inline" '
         )
     if additional_disp:
         return_string += (
@@ -29,7 +29,8 @@ if cc_request <= cc_value and cc_request >= 1 and cc_request <= 3:
 else:
     cc_use = 0
     return_string = (
-        f'-title "{name} fails to use {ability_name}!" '
+        f' -title "{name} fails to use {ability_name}!" '
+        f' -desc "Not enough {cc_name}." '
         )
 cc_current = cc_str(cc_name)
 return_string += (

@@ -20,7 +20,8 @@ if cc_request <= cc_value and cc_request >= 1 and cc_request <= 3:
 else:
     cc_use = 0
     return_string = (
-        f'-title "{name} fails to use {ability_name}!" '
+        f' -title "{name} fails to use {ability_name}!" '
+        f' -desc "Not enough {cc_name}." '
         )
 cc_current = cc_str(cc_name)
 return_string += (
