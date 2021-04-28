@@ -1,7 +1,17 @@
-!alias sharpen tembed
+!alias diamond tembed
 <drac2>
 ability_name = "Diamond Soul" 
-if len(&ARGS&) > 0:
+cc_name = "Ki Points"
+cc_value = character().get_cc(cc_name)
+return_string = ""
+if len(&ARGS&) == 0:
+    cc_use = 0
+    return_string = (
+        f' -title "{name} fails to use {ability_name}!" '
+        f' -desc "Input required to speciy save type." '   #could state allowed saves
+        )
+else:
+    error = False
     args = &ARGS&
     input = args[0].lower()
     length = len(input)
@@ -19,41 +29,47 @@ if len(&ARGS&) > 0:
         save = "Charisma"
     elif input == "death"[0,length] or input == "ds":
         save = "Death"
-    if  
-        cc_name = "Ki Points"
-        cc_value = character().get_cc(cc_name)
-        return_string = ""
-        if cc_value >= 1:
-            cc_use = 1
-            character().mod_cc(cc_name, -cc_use)
-            #TODO
-            return_string = (
-                f'-title "{name} uses {ability_name}!" '
-                f'-desc "Your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result." '
-                f'-f "New {save} Save | " ' #TODO
-                )
-        else:
-            cc_use = 0
-            return_string = (
-                f' -title "{name} fails to use {ability_name}!" '
-                f' -desc "Not enough {cc_name}." '
-                )
-    else:
+    else 
+        error = True   #indicates invalid save specified
+    
+    if error:
         cc_use = 0
         return_string = (
             f' -title "{name} fails to use {ability_name}!" '
             f' -desc "Input {str(input)} is not a recognized save." '   #could state allowed saves
-            )    
-else:
-    cc_use = 0
-    return_string = (
-        f' -title "{name} fails to use {ability_name}!" '
-        f' -desc "Input {str(input)} is not a recognized save." '   #could state allowed saves
-        )
+            )
+    else:
+        bonus = 0
+        if len(args) > 1:
+            if isinstance(args[1], int):
+                bonus = int(args[1])
+            else:  
+                error = True
+        if error:
+            return_string = (
+                f' -title "{name} fails to use {ability_name}!" '
+                f' -desc "Input {str(input)} is not a bonus. Save bonus must be an integer." '
+                )
+        else:
+            if cc_value >= 1:
+                cc_use = 1
+                character().mod_cc(cc_name, -cc_use)
+                #TODO: save rolling
+                return_string = (
+                    f'-title "{name} uses {ability_name}!" '
+                    f'-desc "Your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result." '
+                    f'-f "New {save} Save | " ' #TODO: new save roll displaying
+                    )
+            else:
+                cc_use = 0
+                return_string = (
+                    f' -title "{name} fails to use {ability_name}!" '
+                    f' -desc "Not enough {cc_name}." '
+                    )
 cc_current = cc_str(cc_name)
 return_string += (
         f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
-        f'-footer "{ctx.prefix}{ctx.alias} [save]"'
+        f'-footer "{ctx.prefix}{ctx.alias} [save] [bonus (optional)]"'
         )
 return return_string
 </drac2>
