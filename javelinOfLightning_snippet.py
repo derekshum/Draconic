@@ -1,0 +1,5 @@
+!snippet jol {{cc="Javelins of Lightning"}}
+{{c=get_cc(cc)}}
+{{'-d "4d6[lightning]"' if c else ''}}
+{{set("bolt", vroll("4d6"))}}
+{{mod_cc(cc, -1) if c else ''}} -f "{{f'Javelin of Lightning|This javelin is a magic weapon. When you hurl it and speak its command word, it transforms into a bolt of lightning, forming a line 5 feet wide that extends out from you to a target within 120 feet. Each creature in the line excluding you and the target must make a DC 13 Dexterity saving throw, taking {str(bolt)} lightning damage on a failed save, and half as much ({str(int(bolt.total/2))}) damage on a successful one.\n\n**{cc} remaining:** {cc_str(cc)}' if c else f'No more uses of Javelins of Lightning|The javelin\'s property can\'t be used again until the next dawn. In the meantime, the javelin can still be used as a magic weapon.\n\n**Javelins of Lightning remaining:** {cc_str(cc)}'}}"
