@@ -25,9 +25,9 @@ else:
         save = "Intelligence"
     elif input == "wisdom"[0:length]:
         save = "Wisdom"
-    elif input == "charisma"[0:length]:
+    elif input == "charisma"[0:length]: #c will default to Consitution
         save = "Charisma"
-    elif input == "death"[0:length] or input == "ds":
+    elif input == "death"[0:length] or input == "ds":   #d and de will default to Dexterity
         save = "Death"
     else:
         error = True   #indicates invalid save specified
@@ -41,7 +41,7 @@ else:
     else:
         bonus = 0
         if len(args) > 1:
-            if not isinstance(args[1], int):
+            if typeof(args[1]) != 'int':    #TODO properly flag
                 return_string = (
                     f' -title "{name} fails to use {ability_name}!" '
                     f' -desc "Input {str(input)} is not a bonus. Save bonus must be an integer." '
