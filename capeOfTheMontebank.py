@@ -15,16 +15,13 @@ else:
     cc_use = 1
     cc_recharge_change = 1
     character().mod_cc(cc_name, -cc_use)
-    character().mod_cc(cc_recharge_name, cc_recharge_change)
     return_string = (
         f' -title "{name} uses their {cc_name} to cast Dimension Door!" '
-        # f' -desc "" '
+        #f' -desc "" '
         )
 cc_current = cc_str(cc_name)
-cc_recharge_current = cc_str(cc_recharge_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
-    f' -f "{cc_recharge_name} (+{cc_recharge_change})| {cc_recharge_current}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias}" '
     )
 return return_string
