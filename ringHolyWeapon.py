@@ -1,4 +1,4 @@
-!alias focused tembed
+!alias rhw tembed
 <drac2>
 cc_request = 5
 ability_name = "Holy Weapon"
