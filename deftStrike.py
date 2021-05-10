@@ -23,7 +23,7 @@ if cc_value >= 1:
     return_string = (
         f'-title "{name} uses {ability_name}!" '
         f'-desc "When you hit a target with a kensei weapon, you can spend 1 ki point to cause the weapon to deal extra damage to the target equal to your Martial Arts die. You can use this feature only once on each of your turns." '
-        f' -f "Damage{crit_text}|{str(damage)}" '
+        f' -f "Damage{crit_text}|{str(damage)}|inline" '
         )
 else:
     cc_use = 0
