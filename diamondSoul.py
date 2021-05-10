@@ -67,6 +67,7 @@ else:
             cc_use = 1
             character().mod_cc(cc_name, -cc_use)
             new_save = vroll("1d20 + " + str(modifier)) 
+            #TODO: dis/advantage and bonus handling, modifiying death s/f
             return_string = (
                 f' -title "{name} uses {ability_name} to reroll a {save} Save!" '
                 f' -desc "Your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result." '
