@@ -1,4 +1,4 @@
-!alias diamond tembed
+tembed
 <drac2>
 ability_name = "Diamond Soul" 
 cc_name = "Ki Points"
@@ -46,17 +46,6 @@ else:
             f' -desc "Input {str(input)} is not a recognized save." '   #could state allowed saves
             )
     else:
-        #TODO: add option for advantage or disadvantage
-        #TODO: correct bonus handling
-        #bonus = 0
-        #if len(args) > 1:
-        #    if typeof(args[1]) != 'int':    #TODO properly flag
-        #        return_string = (
-        #            f' -title "{name} fails to use {ability_name}!" '
-        #            f' -desc "Input {str(input)} is not a bonus. Save bonus must be an integer." '
-        #            )
-        #    else:  
-        #        bonus = int(args[1])
         if cc_value < 1:
             cc_use = 0
             return_string = (
@@ -64,10 +53,25 @@ else:
                 f' -desc "Not enough {cc_name}." '
                 )
         else: 
+            vantage = "1d20"
+            bonus = "0"
+            if len(args) > 1:
+                input = args[1].lower()
+                length = len(input)
+                if input == "advantage"[0:length]:
+                    vantage =  "2d20kh1"
+                elif input == "disadvantage"[0:length]:
+                    vantage = "2d20kl1"
+                #otherwise flat roll
+                if len(args) > 2:
+                    bonus = args[2].lower()
             cc_use = 1
             character().mod_cc(cc_name, -cc_use)
-            new_save = vroll("1d20 + " + str(modifier)) 
-            #TODO: dis/advantage and bonus handling, modifiying death s/f
+            if bonus != "0":
+                new_save = vroll(vantage + " + " + str(modifier) + " + " + str(bonus)) 
+            else: 
+                new_save = vroll(vantage + " + " + str(modifier)) 
+            #TODO: modifiying death s/f
             return_string = (
                 f' -title "{name} uses {ability_name} to reroll a {save} Save!" '
                 f' -desc "Your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result." '
@@ -76,7 +80,7 @@ else:
 cc_current = cc_str(cc_name)
 return_string += (
         f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
-        f' -footer "{ctx.prefix}{ctx.alias} [save]" ' #TODO [adv/dis (optional)] [bonus (optional)]
+        f' -footer "{ctx.prefix}{ctx.alias} [save] [adv/dis (optional)] [bonus (optional)]" '
         )
 return return_string
 </drac2>
