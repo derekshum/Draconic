@@ -71,7 +71,7 @@ else:
                 new_save = vroll(vantage + " + " + str(modifier) + " + " + str(bonus)) 
             else: 
                 new_save = vroll(vantage + " + " + str(modifier)) 
-            #TODO: modifiying death s/f
+            #TODO: modifiying death s/f on success
             return_string = (
                 f' -title "{name} uses {ability_name} to reroll a {save} Save!" '
                 f' -desc "Your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result." '
