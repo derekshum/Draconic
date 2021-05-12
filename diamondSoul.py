@@ -55,6 +55,7 @@ else:
         else: 
             vantage = "1d20"
             bonus = "0"
+            death_fails_removed = 1 #number of death fails to remove on a successful death save, 1 if regular death fail, 2 if crit death fail
             if len(args) > 1:
                 input = args[1].lower()
                 length = len(input)
@@ -65,18 +66,36 @@ else:
                 #otherwise flat roll
                 if len(args) > 2:
                     bonus = args[2].lower()
+                    if len(args > 3:
+                        input = args[3].lower()
+                        length = len(input)
+                        if input == "yes"[0:length] or input == "fail"[0:length] or input == "critfail"[0:length]:
+                            crit_death_fail = True
             cc_use = 1
             character().mod_cc(cc_name, -cc_use)
             if bonus != "0":
                 new_save = vroll(vantage + " + " + str(modifier) + " + " + str(bonus)) 
             else: 
                 new_save = vroll(vantage + " + " + str(modifier)) 
-            #TODO: modifiying death s/f on success
-            return_string = (
+            return_string += (f' -f "test of test" ')   #TODO: remove
+            return_string += (f' -f "{save} eh {new_save.crit != CritType.FAIL}" ')  #TODO: remove
+            if save == "Death" and new_save.crit != CritType.FAIL: #modify death saves 
+                return_string += (f' -f "hitting death save specific modifications" ')
+                character().death_saves.fail(-1*death_fails_removed)
+                if new_save.crit == CritType.CRIT:
+                    character().death_saves.succeed(2)
+                elif new_save.total >= 10:
+                    character().death_saves.succeed(1)
+                else:
+                    character().death_saves.fail(1)
+            return_string += (f' -f "test of test2" ')
+            return_string += (  #TODO: change back
                 f' -title "{name} uses {ability_name} to reroll a {save} Save!" '
                 f' -desc "Your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result." '
-                f'-f "New {save} Save | {new_save}|inline" ' 
+                f' -f "New {save} Save | {new_save}|inline" ' 
                 )
+            return_string += (f' -f "test of test3" ')  #TODO: remove
+            return_string += (f' -title "test of test4" ')  #TODO: remove
 cc_current = cc_str(cc_name)
 return_string += (
         f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
