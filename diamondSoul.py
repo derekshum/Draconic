@@ -70,29 +70,43 @@ else:
                         input = args[3].lower()
                         length = len(input)
                         if input == "yes"[0:length] or input == "fail"[0:length] or input == "critfail"[0:length]:
-                            crit_death_fail = True
+                            death_fails_removed = 2
+                        returnstring = (f' -f "{input}" ') #TODO: test and remove
             cc_use = 1
             character().mod_cc(cc_name, -cc_use)
             if bonus != "0":
                 new_save = vroll(vantage + " + " + str(modifier) + " + " + str(bonus)) 
             else: 
                 new_save = vroll(vantage + " + " + str(modifier)) 
-            return_string = (
+            return_string += (
                 f' -title "{name} uses {ability_name} to reroll a {save} Save!" '
                 f' -desc "Your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result." '
                 f' -f "New {save} Save | {new_save}|inline" ' 
                 )
             if save == "Death":
-                if new_save.result.crit != 2: #modify death saves 
-                    character().death_saves.fail(-1*death_fails_removed)
+                if new_save.result.crit == 2:
+                    success_change = "+0"
+                    failure_change = "-0"
+                else:
                     if new_save.result.crit == 1:
+                        character().death_saves.fail(-1*death_fails_removed)
                         character().death_saves.succeed(2)
+                        success_change = "+2"
+                        failure_change = str(-1*death_fails_removed)
                     elif new_save.total >= 10:
+                        character().death_saves.fail(-1*death_fails_removed)
                         character().death_saves.succeed(1)
+                        success_change = "+1"
+                        failure_change = str(-1*death_fails_removed)
+                    elif death_fails_removed == 2:
+                        character().death_saves.fail(-1)
+                        success_change = "+0"
+                        failure_change = "-1"
                     else:
-                        character().death_saves.fail(1)
+                        success_change = "+0"
+                        failure_change = "-0"
                 return_string += (
-                    f' ""'
+                    f' -f "Death Saves Successes ({success_change}): {str(character().death_saves.successes)}/3\nFailures ({failure_change}): {str(character().death_saves.fails)}/3" '
                     )
             
 cc_current = cc_str(cc_name)
