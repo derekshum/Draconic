@@ -77,20 +77,24 @@ else:
                 new_save = vroll(vantage + " + " + str(modifier) + " + " + str(bonus)) 
             else: 
                 new_save = vroll(vantage + " + " + str(modifier)) 
-            if save == "Death" and new_save.crit != CritType.FAIL: #modify death saves 
-                return_string += (f' -f "hitting death save specific modifications" ')
-                character().death_saves.fail(-1*death_fails_removed)
-                if new_save.crit == CritType.CRIT:
-                    character().death_saves.succeed(2)
-                elif new_save.total >= 10:
-                    character().death_saves.succeed(1)
-                else:
-                    character().death_saves.fail(1)
             return_string = (
                 f' -title "{name} uses {ability_name} to reroll a {save} Save!" '
                 f' -desc "Your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result." '
                 f' -f "New {save} Save | {new_save}|inline" ' 
                 )
+            if save == "Death":
+                if new_save.result.crit != 2: #modify death saves 
+                    character().death_saves.fail(-1*death_fails_removed)
+                    if new_save.result.crit == 1:
+                        character().death_saves.succeed(2)
+                    elif new_save.total >= 10:
+                        character().death_saves.succeed(1)
+                    else:
+                        character().death_saves.fail(1)
+                return_string += (
+                    f' ""'
+                    )
+            
 cc_current = cc_str(cc_name)
 return_string += (
         f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
