@@ -66,12 +66,13 @@ else:
                 #otherwise flat roll
                 if len(args) > 2:
                     bonus = args[2].lower()
+                    return_string += (f' -f "{input}" ') #TODO: test and remove
                     if len(args) > 3:
                         input = args[3].lower()
                         length = len(input)
                         if input == "yes"[0:length] or input == "fail"[0:length] or input == "critfail"[0:length]:
                             death_fails_removed = 2
-                        returnstring = (f' -f "{input}" ') #TODO: test and remove
+                        return_string += (f' -f "{input}" ') #TODO: test and remove
             cc_use = 1
             character().mod_cc(cc_name, -cc_use)
             if bonus != "0":
