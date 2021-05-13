@@ -66,7 +66,7 @@ else:
                 #otherwise flat roll
                 if len(args) > 2:
                     bonus = args[2].lower()
-                    if len(args > 3:
+                    if len(args) > 3:
                         input = args[3].lower()
                         length = len(input)
                         if input == "yes"[0:length] or input == "fail"[0:length] or input == "critfail"[0:length]:
