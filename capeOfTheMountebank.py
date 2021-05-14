@@ -1,7 +1,8 @@
-!alias mont tembed
+!alias mou tembed
 <drac2>
-#!cc create "Cape of the Montebank" -max 1 -min 0 -type bubble -reset long -title "Cape of the Montebank" -desc "This cape smells faintly of brimstone. While wearing it, you can use it to cast the dimension door spell as an action. This property of the cape can't be used again until the next dawn. When you disappear, you leave behind a cloud of smoke, and you appear in a similar cloud of smoke at your destination. The smoke lightly obscures the space you left and the space you appear in, and it dissipates at the end of your next turn. A light or stronger wind disperses the smoke."
-cc_name = "Cape of the Montebank"
+#!cc create "Cape of the Mountebank" -max 1 -min 0 -type bubble -reset long -title "Cape of the Montebank" -desc "This cape smells faintly of brimstone. While wearing it, you can use it to cast the dimension door spell as an action. This property of the cape can't be used again until the next dawn. When you disappear, you leave behind a cloud of smoke, and you appear in a similar cloud of smoke at your destination. The smoke lightly obscures the space you left and the space you appear in, and it dissipates at the end of your next turn. A light or stronger wind disperses the smoke."
+#this entire alias could just be !alias mou cc "Cape of the Mountebank" -1 and is on
+cc_name = "Cape of the Mountebank"
 cc_value = character().get_cc(cc_name)
 return_string = ""
 if cc_value < 1:
