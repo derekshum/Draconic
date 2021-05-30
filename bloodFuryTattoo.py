@@ -30,17 +30,17 @@ else:
     if damage.total <= missing_hp: 
         character().modify_hp(damage.total)
         return_string += (
-            f' -f "Healing|{str(former_hp)}+{str(damage.total)}={str(character().hp)}/{str(character().max_hp)}|inline" '
+            f' -f "Healing|{str(former_hp)} + {str(damage.total)} = {str(character().hp)}/{str(character().max_hp)}|inline" '
             )
     elif missing_hp >= 0: 
         character().modify_hp(missing_hp)
         return_string += (
-            f' -f "Healing|{str(former_hp)}+{str(missing_hp)}={str(character().hp)}/{str(character().max_hp)}|inline" '
+            f' -f "Healing|{str(former_hp)} + {str(missing_hp)} = {str(character().hp)}/{str(character().max_hp)}|inline" '
             f' -f "Unused healing|!hp {str(damage.total - missing_hp)}|inline" '
             )
     else: 
         return_string += (
-            f' -f "Healing|{str(former_hp)}+0={str(character().hp)}/{str(character().max_hp)}|inline" '
+            f' -f "Healing|{str(former_hp)} + 0 = {str(character().hp)}/{str(character().max_hp)}|inline" '
             f' -f "Unused healing|!hp {str(damage.total)}|inline" '
             )    
 cc_current = cc_str(cc_name)
