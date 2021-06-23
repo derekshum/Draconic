@@ -21,14 +21,14 @@ if cc_value >= 1:
         die_num = 2
     damage = vroll(str(die_num) + "d" + str(die))
     return_string = (
-        f'-title "{name} uses {ability_name}!" '
-        f'-desc "When you hit a target with a kensei weapon, you can spend 1 ki point to cause the weapon to deal extra damage to the target equal to your Martial Arts die. You can use this feature only once on each of your turns." '
-        f' -f "Damage{crit_text}|{str(damage)}|inline" '
+        f' -title "{name} uses {ability_name}!"'
+        f' -desc "When you hit a target with a kensei weapon, you can spend 1 ki point to cause the weapon to deal extra damage to the target equal to your Martial Arts die. You can use this feature only once on each of your turns."'
+        f' -f "Damage{crit_text}|{str(damage)}|inline"'
         )
 else:
     cc_use = 0
     return_string = (
-        f' -title "{name} fails to use {ability_name}!" '
+        f' -title "{name} fails to use {ability_name}!"'
         f' -desc "Not enough Ki." '
         )
 cc_current = cc_str(cc_name)
