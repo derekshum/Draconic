@@ -35,7 +35,7 @@ else:
         modifier = charismaSave
     elif input == "death"[0:length] or input == "ds":   #d and de will default to Dexterity
         save = "Death"
-        modifier = strengthSave - strengthMod   #best guess for capturing proficiency and items effects
+        modifier = 0   #assumes 0 as whether bonuses that aren't rerolls apply to death saves is a messy RAW question
     else:
         error = True   #indicates invalid save specified
     
