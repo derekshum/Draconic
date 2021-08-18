@@ -2,8 +2,6 @@
 #
 #When you cast the 1st-level spell through your mark, you can expend one of your Hit Dice and roll it. If you roll an even number, you gain a number of temporary hit points equal to the number rolled. If you roll an odd number, one random creature within 30 feet of you (not including you) takes force damage equal to the number rolled. If no other creatures are in range, you take the damage."
 
-# input declaration
-
 # f'-desc "**Casting Time:** 1 reaction, which you take when you are hit by an attack or targeted by the magic missile spell\n**Range:** Self\n**Components:** V, S\n**Duration:** 1 round\n**Description**\nAn invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile." '
 
 # !alias ads 
