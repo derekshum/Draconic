@@ -26,22 +26,22 @@ if len(&ARGS&) > 0:
             save = "Charisma"
         if len(args) > 2:
             dc = args[2]
-            if len(args) > 3:
-                shape = args[3]
+            if len(args) > 3: 
+                nh = args[3].lower()
+                length = len(nh)
+                if nh == "no"[0:length]:
+                    dispHalf = False
                 if len(args) > 4:
-                    size = args[4]
-                    if len(args) > 5: 
-                        nh = args[5].lower()
-                        length = len(nh)
-                        if nh == "no"[0:min(length,2)]:
-                            dispHalf = False
-return_string = (f'-title "Make a Save!" ')
-desc_string = ""
+                    shape = args[4]
+                    if len(args) > 5:
+                        size = args[5]
 if save != "":
-    save = save + " Saving Throw"
+    save += " "
     if dc != "":
         save = "DC " + dc + " " + save
-    desc_string += save + "\n"
+save += "Saving Throw"
+return_string = (f'-title "Make a {save}!" ')
+desc_string = ""
 if shape != "":
     if size != "":
         shape = size + "ft " + shape
@@ -54,7 +54,7 @@ else:
     desc_string += "No damage on a success!\n"
 return_string += (
     f'-desc "{desc_string}" '
-    f'-footer "{ctx.prefix}{ctx.alias} [roll] (Optionals: [save] [dc] [shape] [size] [no half])" '
+    f'-footer "{ctx.prefix}{ctx.alias} [roll] (Optionals: [save] [dc] [no half] [shape] [size] )" '
     )
 return return_string
 </drac2>
