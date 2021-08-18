@@ -33,25 +33,27 @@ if len(&ARGS&) > 0:
                     if len(args) > 5: 
                         nh = args[5].lower()
                         length = len(nh)
-                        if nh == "no"[0:max(length,2)]:
+                        if nh == "no"[0:min(length,2)]:
                             dispHalf = False
 return_string = (f'-title "Make a Save!" ')
+desc_string = ""
 if save != "":
     save = save + " Saving Throw"
     if dc != "":
         save = "DC " + dc + " " + save
-    return_string += (f'-f "{save}" ')
+    desc_string += save + "\n"
 if shape != "":
     if size != "":
         shape = size + "ft " + shape
-    return_string += (f'-f "{shape}" ')
+    desc_string += shape + "\n"
 dmgRoll = vroll(rollText)
-return_string += (f'-f "Full Damage: {dmgRoll}" ')
+desc_string += "Full Damage: " + dmgRoll + "\n"
 if dispHalf:
-    return_string += (f'-f "Half Damage: {dmgRoll.total} / 2 = {(int)(dmgRoll.total / 2)}" ')
+    desc_string += "Half Damage: " + dmgRoll.total + " / 2 = " + (int)(dmgRoll.total / 2) + "\n"
 else:
-    return_string += (f'-f "No damage on a success!" ')
+    desc_string += "No damage on a success!\n"
 return_string += (
+    f'-desc "{desc_string}" '
     f'-footer "{ctx.prefix}{ctx.alias} [roll] (Optionals: [save] [dc] [shape] [size] [no half])" '
     )
 return return_string
