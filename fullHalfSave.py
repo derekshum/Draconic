@@ -85,7 +85,7 @@ else:
     desc_string += "No damage on a success!\n"
 return_string += (
     f'-desc "{desc_string}" '
-    f'-footer "{ctx.prefix}{ctx.alias} [roll] (Optionals: [save] [dc] [dmg type] [no half] [shape] [size])" '
+    f'-footer "{ctx.prefix}{ctx.alias} [roll] (Optionals: [save] [dc] [dmg type] [half] [shape] [size])" '
     )
 return return_string
 </drac2>
