@@ -28,40 +28,41 @@ if len(&ARGS&) > 0:
             save = "Charisma"
         if len(args) > 2:
             dc = args[2]
-            if len(args) > 3:
-                damage = args[3]
-                length = len(damage)
-                if damage.lower() == "bludgeoning"[0:length]:
-                    damage = "Bludgeoning"
-                elif damage.lower() == "piercing"[0:length]:
-                    damage = "Piercing"
-                elif damage.lower() == "slashing"[0:length]:
-                    damage = "Slashing"
-                elif damage.lower() == "acid"[0:length]:
-                    damage = "Acid"   
-                elif damage.lower() == "cold"[0:length]:
-                    damage = "Cold"
-                elif damage.lower() == "fire"[0:length]:
-                    damage = "Fire"
-                elif damage.lower() == "force"[0:length]:   #f is fire
-                    damage = "Force"
-                elif damage.lower() == "lightning"[0:length]:
-                    damage = "Lightning"
-                elif damage.lower() == "necrotic"[0:length]:
-                    damage = "Necrotic"
-                elif damage.lower() == "poison"[0:length]:
-                    damage = "Poison"
-                elif damage.lower() == "psychic"[0:length]:
-                    damage = "Psychic"
-                elif damage.lower() == "radiant"[0:length]:
-                    damage = "Radiant"
-                elif damage.lower() == "thunder"[0:length]:
-                    damage = "Thunder"                
-                if len(args) > 4: 
-                    nh = args[4].lower()
-                    length = len(nh)
-                    if nh == "no"[0:length]:
-                        dispHalf = False
+            if len(args) > 3: 
+                nh = args[3].lower()
+                length = len(nh)
+                if nh == "no"[0:length]:
+                    dispHalf = False
+                if len(args) > 4:
+                    damage = args[4]
+                    length = len(damage)
+                    if damage.lower() == "bludgeoning"[0:length]:
+                        damage = "bludgeoning"
+                    elif damage.lower() == "piercing"[0:length]:
+                        damage = "piercing"
+                    elif damage.lower() == "slashing"[0:length]:
+                        damage = "slashing"
+                    elif damage.lower() == "acid"[0:length]:
+                        damage = "acid"   
+                    elif damage.lower() == "cold"[0:length]:
+                        damage = "cold"
+                    elif damage.lower() == "fire"[0:length]:
+                        damage = "fire"
+                    elif damage.lower() == "force"[0:length]:   #f is fire
+                        damage = "force"
+                    elif damage.lower() == "lightning"[0:length]:
+                        damage = "lightning"
+                    elif damage.lower() == "necrotic"[0:length]:
+                        damage = "necrotic"
+                    elif damage.lower() == "poison"[0:length]:
+                        damage = "poison"
+                    elif damage.lower() == "psychic"[0:length]:
+                        damage = "psychic"
+                    elif damage.lower() == "radiant"[0:length]:
+                        damage = "radiant"
+                    elif damage.lower() == "thunder"[0:length]:
+                        damage = "thunder"   
+                    damage = "[" + damage + "]"
                     if len(args) > 5:
                         shape = args[5]
                         if len(args) > 6:
@@ -78,14 +79,14 @@ if shape != "":
         shape = size + "ft " + shape
     desc_string += shape + "\n"
 dmgRoll = vroll(rollText)
-desc_string += "Full Damage: " + dmgRoll + "[" + damage + "]\n"
+desc_string += "Full Damage: " + dmgRoll + damage + "\n"
 if dispHalf:
-    desc_string += "Half Damage: " + dmgRoll.total + " / 2 = " + (int)(dmgRoll.total / 2) + "\n"
+    desc_string += "Half Damage: " + dmgRoll.total + " / 2 = " + (int)(dmgRoll.total / 2) + damage + "\n"
 else:
     desc_string += "No damage on a success!\n"
 return_string += (
     f'-desc "{desc_string}" '
-    f'-footer "{ctx.prefix}{ctx.alias} [roll] (Optionals: [save] [dc] [dmg type] [half] [shape] [size])" '
+    f'-footer "{ctx.prefix}{ctx.alias} [roll] (Optionals: [save] [dc] [half(y)] [dmg type] [shape] [size])" '
     )
 return return_string
 </drac2>
