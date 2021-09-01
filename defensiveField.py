@@ -1,6 +1,5 @@
-#!cc create "Defensive Field" -min 0 -max 3 -type bubble -reset long -desc "As a bonus action, you can gain temporary hit points equal to your level in this class, replacing any temporary hit points you already have. You lose these temporary hit points if you doff the armor. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
-#TODO: updating num defensive fields to PB when needed
-#TODO: make updating num defensive fields part of the alias based on PB
+#!cc create "Defensive Field" -min 0 -max proficiencyBonus -type bubble -reset long -desc "As a bonus action, you can gain temporary hit points equal to your level in this class, replacing any temporary hit points you already have. You lose these temporary hit points if you doff the armor. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+#TODO: updating num defensive field to PB when needed with !updateDefensiveField
 
 !alias df tembed
 <drac2>
