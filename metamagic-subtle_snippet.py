@@ -1,6 +1,6 @@
-!alias careful tembed
+!snippet subtle tembed
 <drac2>
-ability_name = "Careful Spell"
+ability_name = "Subtle Spell"
 cc_name_1 = "Metamagic Points"
 cc_name_2 = "Sorcery Points"
 cc_value_1 = 0
@@ -19,13 +19,11 @@ if cc_value_1 + cc_value_2 >= 1:
         cc_use_2 = 1
         mod_cc(cc_name_2, -cc_use_2)
     return_string = (
-        f'-title "{name} uses {ability_name}!" '
-        f'-desc "When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell\'s full force. To do so, you spend 1 sorcery point and choose up to **{max(charismaMod,1)}** creatures. A chosen creature automatically succeeds on its saving throw against the spell." '
+        f'-f "{ability_name}|When you cast a spell, you can spend 1 sorcery point to cast it without any somatic or verbal components." '
         )
 else:
     return_string = (
-        f' -title "{name} fails to use {ability_name}!" '
-        f' -desc "No {cc_name_1} or {cc_name_2} left, take a long rest." '
+        f' -f "Failure to use {ability_name}|No {cc_name_1} or {cc_name_2} left, take a long rest." '
         )
 if cc_exists(cc_name_1):
     cc_use_string_1 = ""
@@ -37,6 +35,5 @@ if cc_exists(cc_name_2):
     if cc_use_2 > 0:
         cc_use_string_2 = " -(" + cc_use_2 + ")"
     return_string += (f'-f "{cc_name_2} {cc_use_string_2}| {cc_str(cc_name_2)}|inline" ')
-return_string += (f'-footer "{ctx.prefix}{ctx.alias}"')
 return return_string
 </drac2>
