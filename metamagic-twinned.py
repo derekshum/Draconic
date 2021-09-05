@@ -18,13 +18,16 @@ cc_use_2 = 0
 if cc_value_1 + cc_value_2 >= lvl:
     if cc_value_1 >= lvl:
         cc_use_1 = lvl
+        mod_cc(cc_name_1, -cc_use_1)
     elif cc_value_1 < lvl and cc_value_1 > 0:
         cc_use_1 = cc_value_1
         cc_use_2 = lvl - cc_value_1
+        mod_cc(cc_name_1, -cc_use_1)
+        mod_cc(cc_name_2, -cc_use_2)
     else:
         cc_use_2 = lvl
-    mod_cc(cc_name_1, -cc_use_1)
-    mod_cc(cc_name_2, -cc_use_2)
+        mod_cc(cc_name_2, -cc_use_2)
+    
     return_string = (
         f'-title "{name} uses {ability_name} on a Level {lvl} Spell!" '
         f'-desc "When you cast a spell that targets only one creature and doesn\'t have a range of self, you can spend a number of sorcery points equal to the spell\'s level to target a second creature in range with the same spell (1 sorcery point if the spell is a cantrip).\n\nTo be eligible, a spell must be incapable of targeting more than one creature at the spell\'s current level. For example, magic missile and scorching ray aren\'t eligible, but ray of frost and chromatic orb are." '
