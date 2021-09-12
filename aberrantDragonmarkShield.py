@@ -31,28 +31,33 @@ ability_name = "their Aberrant Dragonmark to cast Shield"
 cc_name = "Aberrant Dragonmark: Shield"
 cc_value = character().get_cc(cc_name)
 return_string = ""
+HD_name = "Hit Dice (d" + str(HD_size) + ")"
+HD_use = 0
 if cc_value > 0:
     cc_use = 1
     character().mod_cc(cc_name, -cc_use)
-    return_string = f' -title "{name} invokes {ability_name}!" '
+    return_string = f' -title "{name} invokes {ability_name}!"'
     if other_AC_bonus_set: 
-        return_string += f' -f "New AC|{armor + other_AC_bonus} + 5 = {armor + other_AC_bonus + 5}|inline" '
+        return_string += f' -f "New AC|{armor + other_AC_bonus} + 5 = {armor + other_AC_bonus + 5}|inline"'
     else:
-        return_string += f' -f "AC Bonus|+5|inline" '  
-    HD_use = 0        
+        return_string += f' -f "AC Bonus|+5|inline"'  
     if HD_size != 0:
-        HD_name = "Hit Dice (d" + str(HD_size) + ")"
         HD = character().get_cc(HD_name)
         if HD > 0:
             HD_use = 1
             character().mod_cc(HD_name, -HD_use)
             HD_roll = vroll("1d"+str(HD_size))
             return_string += (
-                f' -title "{name} invokes {ability_name}, using HD!" '
+                f' -title "{name} invokes {ability_name}, using HD!"'
                 f' -desc "When you cast the 1st-level spell through your mark, you can expend one of your Hit Dice and roll it. If you roll an even number, you gain a number of temporary hit points equal to the number rolled. If you roll an odd number, one random creature within 30 feet of you (not including you) takes force damage equal to the number rolled. If no other creatures are in range, you take the damage."'
                 f' -f "HD roll|{str(HD_roll)}|inline"'
                 )
             if (HD_roll.total % 2) == 0:
+                if HD_roll.total > character().temp_hp: 
+                    character().set_temp_hp(HD_roll.total)
+                    return_string += f' -f "THP Increased|{hp_str()}|inline"'
+                else:
+                    return_string += f' -f "THP Unchanged|{hp_str()}|inline"'
                 return_string += f' -f "Temporary Hit Points|!thp {str(HD_roll.total)}|inline"'
             else:
                 return_string += f' -f "Damage|{str(HD_roll.total)}|inline"'
@@ -61,8 +66,8 @@ if cc_value > 0:
 else:
     cc_use = 0
     return_string = (
-        f' -title "{name} fails to use {ability_name}!" '
-        f' -desc "Take a short or long rest." '
+        f' -title "{name} fails to use {ability_name}!"'
+        f' -desc "Take a short or long rest."'
         )
 cc_current = cc_str(cc_name)
 return_string += f' -f "{cc_name} (-{cc_use})| {cc_current}|inline"'
