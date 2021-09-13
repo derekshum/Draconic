@@ -1,6 +1,5 @@
 !alias tatShield tembed
 <drac2>
-HD_size = 0
 other_AC_bonus = 0
 other_AC_bonus_set = False
 if len(&ARGS&) > 0:
