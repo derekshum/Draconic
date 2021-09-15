@@ -11,6 +11,6 @@ if cc_value + charge > cc_max:
 character().mod_cc(cc_name, charge)
 cc_current = cc_str(cc_name)
 return_string += f'-f "{cc_name} (+{charge})|{cc_current}|inline" '
-return_string += f'-gif "https://media.discordapp.net/attachments/533815265562066957/887487154081636372/a4fec7faa0b32a7945ed3bae10bae2d7.gif" '
+return_string += f'-thumb "https://media.discordapp.net/attachments/533815265562066957/887487154081636372/a4fec7faa0b32a7945ed3bae10bae2d7.gif" '
 return return_string
 </drac2>
