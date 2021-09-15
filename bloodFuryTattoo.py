@@ -1,32 +1,23 @@
 tembed
 <drac2>
-#!cc create "Blood Fury Tattoo" -max 10 -min 0 -type bubble -reset long -title "Blood Fury Tattoo" -desc "The tattoo has 10 charges, and it regains all expended charges daily at dawn. While this tattoo is on your skin, you gain the following benefits: 
-
-#- When you hit a creature with a weapon attack, you can expend a charge to deal an extra 4d6 necrotic damage to the target, and you regain a number of hit points equal to the necrotic damage dealt. 
-#- When a creature you can see damages you, you can expend a charge and use your reaction to make a melee attack against that creature, with advantage on your attack roll."
 die_num = 4  #num d6
 crit_text = ""
 cc_request = 1
-if len(&ARGS&) > 0:
-    args = &ARGS&
-    input = args[0].lower()
+isResistant = False
+isVulnerable = False
+for input in &ARGS&:
+    input = input.lower()
     length = len(input)
     if input == "critical"[0:length]:
         die_num = 2 * die_num
         crit_text = " (CRIT!)"
-        if len(&ARGS&) > 1:
-            input = args[1].lower()
-            cc_request = int(input)
-            die_num = cc_request * die_num
-    else:
+    elif input.isnumeric():
         cc_request = int(input)
         die_num = cc_request * die_num
-        if len(&ARGS&) > 1:
-            input = args[1].lower()
-            length = len(input)
-            if input == "critical"[0:length]:
-                die_num = 2 * die_num
-                crit_text = " (CRIT!)"
+    elif input == "resistant"[0:length] or input == "resistance"[0:length]:
+        isResistant = True
+    elif input == "vulnerable"[0:length] or input == "vulnerability"[0:length]:
+        isVulnerable = True
 cc_name = "Blood Fury Tattoo"
 cc_value = character().get_cc(cc_name)
 return_string = ""
@@ -39,7 +30,12 @@ if cc_value < cc_request:
 else:
     cc_use = cc_request
     character().mod_cc(cc_name, -cc_use)
-    damage = vroll(str(die_num) + "d6")
+    roll_string = str(die_num) + "d6"
+    if isResistant:
+        roll_string += "/2"
+    if isVulnerable:
+        roll_string += "*2"
+    damage = vroll(roll_string)
     if cc_use == 1:
         num_text_1 = "a"
         num_text_2 = ""
@@ -68,11 +64,11 @@ else:
         return_string += (
             f' -f "Healing|{str(former_hp)} + 0 = {str(character().hp)}/{str(character().max_hp)}|inline" '
             f' -f "Unused healing|!hp {str(damage.total)}|inline" '
-            )    
+            )
 cc_current = cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
-    f' -footer "{ctx.prefix}{ctx.alias}[?crit(n)][?charges(1)]" '
+    f' -footer "{ctx.prefix}{ctx.alias}[crit(n)][charges(1)][?res][?vuln]" '
     )
 return return_string
 </drac2>
