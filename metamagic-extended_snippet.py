@@ -1,6 +1,6 @@
-!snippet careful tembed
+!snippet extended tembed
 <drac2>
-ability_name = "Careful Spell"
+ability_name = "Extended Spell"
 cc_name_1 = "Metamagic Points"
 cc_name_2 = "Sorcery Points"
 cc_value_1 = 0
@@ -11,7 +11,7 @@ if cc_exists(cc_name_2):
     cc_value_2 = get_cc(cc_name_2)
 cc_use_1 = 0
 cc_use_2 = 0
-if cc_value_1 + cc_value_2 >= 1:
+if cc_value_1 + cc_value_2 > 0:
     if cc_value_1 > 0:
         cc_use_1 = 1
         mod_cc(cc_name_1, -cc_use_1)
@@ -19,7 +19,7 @@ if cc_value_1 + cc_value_2 >= 1:
         cc_use_2 = 1
         mod_cc(cc_name_2, -cc_use_2)
     return_string = (
-        f'-f "{ability_name}|When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell\'s full force. To do so, you spend 1 sorcery point and choose up to **{max(charismaMod,1)}** creatures. A chosen creature automatically succeeds on its saving throw against the spell." '
+        f'-f "{ability_name}|When you cast a spell that has a duration of 1 minute or longer, you can spend 1 sorcery point to double its duration, to a maximum duration of 24 hours." '
         )
 else:
     return_string = (

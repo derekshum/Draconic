@@ -40,12 +40,12 @@ else:
 if cc_exists(cc_name_1):
     cc_use_string_1 = ""
     if cc_use_1 > 0:
-        cc_use_string_1 = " -(" + cc_use_1 + ")"
+        cc_use_string_1 = " (-" + cc_use_1 + ")"
     return_string += (f'-f "{cc_name_1} {cc_use_string_1}| {cc_str(cc_name_1)}|inline" ')
 if cc_exists(cc_name_2):
     cc_use_string_2 = ""
     if cc_use_2 > 0:
-        cc_use_string_2 = " -(" + cc_use_2 + ")"
+        cc_use_string_2 = " (-" + cc_use_2 + ")"
     return_string += (f'-f "{cc_name_2} {cc_use_string_2}| {cc_str(cc_name_2)}|inline" ')
 return_string += (f'-footer "{ctx.prefix}{ctx.alias}"')
 return return_string
