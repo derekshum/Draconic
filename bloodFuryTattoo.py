@@ -52,18 +52,19 @@ else:
             character().modify_hp(missing_hp)
             return_string += (
                 f' -f "Healing|{str(former_hp)} + {str(missing_hp)} = {str(character().hp)}/{str(character().max_hp)}|inline" '
-                f' -f "Unused healing|!hp {str(damage.total - missing_hp)}|inline" '
+                f' -f "Unused Healing|!hp {str(damage.total - missing_hp)}|inline" '
                 )
         else: 
             return_string += (
                 f' -f "Healing|{str(former_hp)} + 0 = {str(character().hp)}/{str(character().max_hp)}|inline" '
-                f' -f "Unused healing|!hp {str(damage.total)}|inline" '
+                f' -f "Unused Healing|!hp {str(damage.total)}|inline" '
                 )
     else:
         num_text_1 = str(cc_use)
         num_text_2 = "s"  
         for i in range(cc_use - 1):
-            #TODO
+            #TODO: display both Healing and Unused Healing titles
+            #TODO: keep track of totals and display at bottom
     return_string += (
         f'-title "{name} makes {num_text_1} Bloodthirsty Strike{num_text_2}!" '
         f'-desc "When you hit a creature with a weapon attack, you can expend a charge to deal an extra 4d6 necrotic damage to the target, and you regain a number of hit points equal to the necrotic damage dealt." '
