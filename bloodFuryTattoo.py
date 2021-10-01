@@ -33,6 +33,8 @@ else:
     roll_string = str(die_num) + "d6"
     if isResistant:
         roll_string += "/2"
+        if cc_use > 1:
+            return_string += f' -f "Calculation Uncertainty|Multiple resisted strikes may have a lower total than displayed due to rounding down odds." '
     if isVulnerable:
         roll_string += "*2"
     damage = vroll(roll_string)
@@ -58,17 +60,17 @@ else:
         character().modify_hp(missing_hp)
         return_string += (
             f' -f "Healing|{str(former_hp)} + {str(missing_hp)} = {str(character().hp)}/{str(character().max_hp)}|inline" '
-            f' -f "Unused healing|!hp {str(damage.total - missing_hp)}|inline" '
+            f' -f "Unused Healing|!hp {str(damage.total - missing_hp)}|inline" '
             )
     else: 
         return_string += (
             f' -f "Healing|{str(former_hp)} + 0 = {str(character().hp)}/{str(character().max_hp)}|inline" '
-            f' -f "Unused healing|!hp {str(damage.total)}|inline" '
+            f' -f "Unused Healing|!hp {str(damage.total)}|inline" '
             )
 cc_current = cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
-    f' -footer "{ctx.prefix}{ctx.alias}[crit(n)][charges(1)][?res][?vuln]" '
+    f' -footer "{ctx.prefix}{ctx.alias} [crit(n)] [charges(1)] [?res/vuln]" '
     )
 return return_string
 </drac2>
