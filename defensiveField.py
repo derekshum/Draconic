@@ -12,7 +12,7 @@ if cc_value >= 1:
     character().set_temp_hp(ArtificerLevel)
     return_string = (
         f'-title "{name} activates their {cc_name}!" '
-        f'-desc "As a bonus action, you can gain temporary hit points equal to your level **({ArtificerLevel})** in this class, replacing any temporary hit points you already have." '
+        f'-desc "As a bonus action, you can gain temporary hit points equal to your level **({ArtificerLevel})** in this class. You lose these temporary hit points if you doff the armor." '
         )
 else:
     cc_use = 0
