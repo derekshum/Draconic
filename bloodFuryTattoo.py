@@ -73,7 +73,7 @@ else:
 cc_current = cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
-    f' -footer "{ctx.prefix}{ctx.alias}[crit(n)][charges(1)][?res][?vuln]" '
+    f' -footer "{ctx.prefix}{ctx.alias} [crit(n)] [charges(1)] [?res/vuln]" '
     )
 return return_string
 </drac2>
