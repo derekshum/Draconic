@@ -13,20 +13,17 @@ is_vulnerable = False    #will apply to all sneak and smite
 for input in &ARGS&:
     input = input.lower()
     length = len(input)
-    if input[0].isdigit() or input[len(input) - 1].isdigit() or input[0] == 's' or input[len(input) - 1] == 's':    
-        if '0' in input or 's' in input:
+    if input[0].isdigit() or input[0] == 's':    
+        if '0' in input or input[0] == 's':
             sneak = True
             if 'c' in input:
                 sneak_crit = True
         else:
-            for j, i in enumerate(input):
-                if i.isdigit(): #0's should be handled above
-                    s.append(int(i))
-                    if 'c' in input:
-                        c.append(True)
-                    else:
-                        c.append(False)
-                    break
+            s.append(int(input[0]))
+            if 'c' in input:
+                c.append(True)
+            else:
+                c.append(False)
     elif input == "critical"[0:length]:
         all_crit = True
         crit_text = " (CRIT!)"
@@ -44,7 +41,7 @@ slots_used = []
 if len(s) == 0:
     sneak = True    #defaults to sneak attack if no smite levels entered
 else:   #check if adequate spell slots and resistance issue   
-    s2 = s
+    s2 = [i for i in s]
     s2.sort()
     current_level = s[0]
     current_level_count = 1
