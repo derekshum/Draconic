@@ -100,10 +100,12 @@ return_string += (
     f' -f "Damage{crit_text}|{str(vroll(roll_string))}" '
     )
 if len(spell_levels) > 0:
+    return_string += f' -desc "**Spell Slots**'
     for i in range(len(spell_levels)):   #display spell slot levels modified
         for j in range(slots_used[i]):
             character().spellbook.use_slot(spell_levels[i])
-        return_string += f' -f "{slots_used[i]} Level {spell_levels[i]} Smites|{character().spellbook.slots_str(spell_levels[i])} (-{slots_used[i]})|inline" '
+        return_string += f'\n{character().spellbook.slots_str(spell_levels[i])} (-{slots_used[i]})'
+    return_string += f'" '
 return_string += f' -footer "{ctx.prefix}{ctx.alias} [?smite levels] [?res/vuln] [allCrit(n)]" '
 return return_string
 </drac2>
