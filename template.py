@@ -1,16 +1,26 @@
 !alias template tembed #TODO
 <drac2>
-# input declaration
-# if len(&ARGS&) > 0:
-    # args = &ARGS&
-    # input = args[0].lower()
-    # #TODO
+#cc_request = 1
+#is_crit = False
+#is_resistant = False
+#is_vulnerable = False
+#for input in &ARGS&:
+#    input = input.lower()
+#    length = len(input)
+#    if input.isnumeric():
+#        cc_request = int(input)
+#    elif input == "critical"[0:length]:
+#        is_crit = True
+#    elif input == "resistant"[0:length] or input == "resistance"[0:length]:
+#        is_resistant = True
+#    elif input == "vulnerable"[0:length] or input == "vulnerability"[0:length]:
+#        is_vulnerable = True
 ability_name = ""   #TODO
 cc_name = ""    #TODO
 cc_value = character().get_cc(cc_name)
 return_string = ""
-if cc_value >= 1:
-    cc_use = 1
+if cc_value >= cc_request:
+    cc_use = cc_request
     character().mod_cc(cc_name, -cc_use)
     return_string = (
         f'-title "{name} uses {ability_name}!" '
