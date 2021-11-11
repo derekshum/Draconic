@@ -25,6 +25,7 @@ if cc_value >= cc_request:
     cc_use = cc_request
     character().mod_cc(cc_name, -cc_use)
     #damage = vroll(str(num_die) + "d6")
+    #handle res and vuln
     return_string = (
         f'-title "{name} uses {ability_name}!" '
         f'-desc "" '    #TODO
