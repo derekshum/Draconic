@@ -24,12 +24,18 @@ return_string = ""
 if cc_value >= cc_request:
     cc_use = cc_request
     character().mod_cc(cc_name, -cc_use)
-    #damage = vroll(str(num_die) + "d6")
-    #handle res and vuln
+    if is_resistant and is_vulnerable:     
+        return_string += f' -f "Calculation Uncertainty|Resisted and Vulnerable damage may have a lower total than displayed due to rounding down odds." '    
+    roll_string = str(num_die) + "d6"   #TODO
+    if is_resistant:
+        roll_string = "(" + roll_string + ")/2"
+    if is_vulnerable:
+        roll_string = "(" + roll_string + ")*2"
+    damage = vroll(roll_string)
     return_string = (
         f'-title "{name} uses {ability_name}!" '
         f'-desc "" '    #TODO
-        #f' -f "Damage{crit_text}|{str(damage)}|inline" '
+        f' -f "Damage{crit_text}|{str(damage)}|inline" '
         )
 else:
     cc_use = 0
