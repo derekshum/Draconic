@@ -1,7 +1,8 @@
 !alias template tembed #TODO
 <drac2>
 #cc_request = 1
-#is_crit = False
+#num_die = 1
+#crit_text = ""
 #is_resistant = False
 #is_vulnerable = False
 #for input in &ARGS&:
@@ -10,7 +11,8 @@
 #    if input.isnumeric():
 #        cc_request = int(input)
 #    elif input == "critical"[0:length]:
-#        is_crit = True
+#        num_die = 2
+#        crit_text = " (CRIT!)"
 #    elif input == "resistant"[0:length] or input == "resistance"[0:length]:
 #        is_resistant = True
 #    elif input == "vulnerable"[0:length] or input == "vulnerability"[0:length]:
@@ -22,10 +24,11 @@ return_string = ""
 if cc_value >= cc_request:
     cc_use = cc_request
     character().mod_cc(cc_name, -cc_use)
+    #damage = vroll(str(num_die) + "d6")
     return_string = (
         f'-title "{name} uses {ability_name}!" '
         f'-desc "" '    #TODO
-        # TODO f' -f "Damage{crit_text}|{str(damage)}|inline" '
+        #f' -f "Damage{crit_text}|{str(damage)}|inline" '
         )
 else:
     cc_use = 0
