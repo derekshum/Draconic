@@ -21,7 +21,7 @@ if cc_value >= 1:
         f' -title "{name} uses {ability_name}!" '
         f' -desc "You can expend one use of your Bardic Inspiration to cause the weapon to deal extra damage to the target you hit. The damage equals the number you roll on the Bardic Inspiration die. You can also push the target up to 5 feet away from you, plus a number of feet equal to the number you roll on that die. You can then immediately use your reaction to move up to your walking speed to an unoccupied space within 5 feet of the target." '
         f' -f "Damage{crit_text}|{str(damage)}|inline" '
-        f' -f "Max Push Distance|{str(5 + damage.total)}ft (rounds to {str(5 + int((damage.total + 2) / 5) * 5)})|inline" '
+        f' -f "Max Push Distance|{str(5 + damage.total)} feet (rounds to {str(5 + int((damage.total + 2) / 5) * 5)} feet)|inline" '
         )
 else:
     cc_use = 0
