@@ -62,7 +62,7 @@ else:   #check if adequate spell slots and resistance issue
             current_level_count += 1
     if len(s) > 1 and is_resistant:     #check if is_resistant issue 1
         return_string += f' -f "Calculation Uncertainty|Multiple resisted smites may have a lower total than displayed due to rounding down odds." '
-if is_resistant and is_vulnerable:     #check if isResistan5 issue 2
+if is_resistant and is_vulnerable:     #check if isResistant issue 2
     return_string += f' -f "Calculation Uncertainty|Resisted and Vulnerable damage may have a lower total than displayed due to rounding down odds." '
 roll_string = ""
 sneak_mult = 1
