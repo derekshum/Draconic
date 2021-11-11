@@ -34,7 +34,7 @@ else:
     cc_use = 0
     return_string = (
         f' -title "{name} fails to use {ability_name}!" '
-        f' -desc "" '   #TODO
+        f' -desc "No uses remaining." '
         )
 cc_current = cc_str(cc_name)
 return_string += (
