@@ -33,20 +33,20 @@ if cc_value >= cc_request:
         roll_string = "(" + roll_string + ")*2"
     damage = vroll(roll_string)
     return_string = (
-        f'-title "{name} uses {ability_name}!" '
-        f'-desc "" '    #TODO
+        f' -title "{name} uses {ability_name}!" '
+        f' -desc "" '    #TODO
         f' -f "Damage{crit_text}|{str(damage)}|inline" '
         )
 else:
     cc_use = 0
     return_string = (
         f' -title "{name} fails to use {ability_name}!" '
-        f' -desc "No uses remaining." '
+        f' -desc "No {cc_name} remaining." '
         )
 cc_current = cc_str(cc_name)
 return_string += (
-    f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
-    f'-footer "{ctx.prefix}{ctx.alias} [uses] [crit] [res] [vuln]" '    #TODO: input specifications
+    f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
+    f' -footer "{ctx.prefix}{ctx.alias} [uses] [crit] [res] [vuln]" '    #TODO: input specifications
     )
 return return_string
 </drac2>
