@@ -6,7 +6,9 @@ movement = -1
 for input in &ARGS&:
     input = input.lower()
     length = len(input)
-    if length == 3 and input[0:2] == "lv":
+    if length == 2 and input[0] == "l": 
+        num_d6 = int(input[1]) - 2
+    elif length == 3 and input[0:2] == "lv":
         num_d6 = int(input[2]) - 2
     elif length > 2 and input[length - 2: length] == "ft":
         movement = int(input[0:length - 2])
