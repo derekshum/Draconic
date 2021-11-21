@@ -1,4 +1,4 @@
-!snippet fu tembed
+!snippet foe1 tembed
 <drac2>
 num = 1
 cc_name = "Favored Foe"
