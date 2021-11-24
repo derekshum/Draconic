@@ -1,18 +1,18 @@
-!alias tatCounter tembed
+!alias swc tembed
 <drac2>
 bonus = 0
 adv = False
 dis = False
-if len(&ARGS&) > 0:
-    args = &ARGS&
-    bonus = args[0].lower()
-    if len(&ARGS&) > 1:
-        v = args[1].lower()
-        length = len(v)
-        if v == "advantage"[0:length]:
-            adv = True
-        elif v == "disadvantage"[0:length]:
-            dis = True        
+for input in &ARGS&:
+    input = input.lower()
+    length = len(input)
+    if input[0].isdigit():
+        bonus = input
+    elif input == "advantage"[0:length]:
+        adv = True
+    elif input == "disadvantage"[0:length]:
+        dis = True  
+        
 ability_name = "their Counterspell Spellwrought Tattoo"
 cc_name = "Counterspell Spellwrought Tattoo"
 cc_value = character().get_cc(cc_name)

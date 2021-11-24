@@ -1,4 +1,4 @@
-!alias tatShield tembed
+!alias sws tembed
 <drac2>
 other_AC_bonus = 0
 other_AC_bonus_set = False
