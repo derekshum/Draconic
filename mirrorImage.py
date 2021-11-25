@@ -12,14 +12,22 @@ return return_string
 
 !alias mi- cc "Mirror Image" -1
 
-!alias mi tembed
+!alias mi 
+tembed
 <drac2>
+to_hit = 0
+to_hit_set = False
+cc_txt = ""
+if len(&ARGS&) > 0:
+    args = &ARGS&
+    to_hit = int(args[0])
+    to_hit_set = True
+    cc_txt = " (-0)"
 cc_name = "Mirror Images"
 cc_value = get_cc(cc_name)
 if cc_value > 0:
     return_string = (
         f'-desc "A creature is unaffected by this spell if it can\'t see, if it relies on senses other than sight, such as blindsight, or if it can perceive illusions as false, as with truesight." '
-        f'-f "{cc_name}|{cc_str(cc_name)}|inline" '
         )
     r = vroll("d20")
     hit = False
@@ -31,11 +39,26 @@ if cc_value > 0:
         mi_val = 6
     if r.total >= mi_val:
         ac = 10 + dexterityMod
-        return_string += (
-            f'-title "A Mirror Image is Targetted!" '
-            f'-f "Mirror Image Targetted|[{r}] >= {mi_val}|inline" '
-            f'-f "Mirror Image AC|{ac}|inline" ' 
-            )        
+        return_string += f'-f "Mirror Image Targetted|[{r}] >= {mi_val}|inline" '        
+        if to_hit_set:
+            if to_hit < ac:
+                return_string += (
+                    f'-title "A Mirror Image is Missed!" '
+                    f'-f "Mirror Image Missed| AC {ac} > {to_hit} |inline" '
+                    )
+            else:
+                return_string += (
+                    f'-title "A Mirror Image is Hit!" '
+                    f'-f "Mirror Image Hit| AC {ac} <= {to_hit} |inline" '           
+                    )                
+                mod_cc(cc_name, -1)
+                cc_current = cc_str(cc_name)
+                cc_txt = " (-1)"
+        else:
+            return_string += (
+                f'-title "A Mirror Image is Targetted!" '
+                f'-f "Mirror Image AC|{ac}|inline" '             
+                )
     else:
         return_string += (
             f'-title "{name} is Targetted!" '
@@ -45,9 +68,11 @@ else:
     cc_use = 0
     return_string = (
         f' -title "{name} has no {cc_name}!" '
-        f' -desc "Perhaps you need to set the cc "Mirror Images"" '
+        f' -desc "`!cmi` will cast the spell and fill the cc." '
         )
-cc_current = cc_str(cc_name)
-return_string += f'-footer "{ctx.prefix}{ctx.alias}" '
+return_string += (
+    f'-f "{cc_name}|{cc_str(cc_name)}{cc_txt}|inline" '
+    f'-footer "{ctx.prefix}{ctx.alias} [atk roll]" '
+    )
 return return_string
 </drac2>
