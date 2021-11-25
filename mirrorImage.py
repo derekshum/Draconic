@@ -14,16 +14,10 @@ return return_string
 
 !alias mi tembed
 <drac2>
-#TODO: implement
-#to_hit = 0
-#if len(&ARGS&) > 0:
-#    args = &ARGS&
-#    to_hit = int(args[0])
 cc_name = "Mirror Images"
 cc_value = get_cc(cc_name)
 if cc_value > 0:
     return_string = (
-        f'-title "{name} has {cc_name}!" '
         f'-desc "A creature is unaffected by this spell if it can\'t see, if it relies on senses other than sight, such as blindsight, or if it can perceive illusions as false, as with truesight." '
         f'-f "{cc_name}|{cc_str(cc_name)}|inline" '
         )
@@ -38,11 +32,15 @@ if cc_value > 0:
     if r.total >= mi_val:
         ac = 10 + dexterityMod
         return_string += (
+            f'-title "A Mirror Image is Targetted!" '
             f'-f "Mirror Image Targetted|[{r}] >= {mi_val}|inline" '
             f'-f "Mirror Image AC|{ac}|inline" ' 
             )        
     else:
-        return_string += f'-f "{name} Targetted|[{r}] < {mi_val} ({cc_value} images)|inline" '
+        return_string += (
+            f'-title "{name} is Targetted!" '
+            f'-f "{name} Targetted|[{r}] < {mi_val}|inline" '
+            )
 else:
     cc_use = 0
     return_string = (
@@ -50,8 +48,6 @@ else:
         f' -desc "Perhaps you need to set the cc "Mirror Images"" '
         )
 cc_current = cc_str(cc_name)
-return_string += (
-    f'-footer "{ctx.prefix}{ctx.alias}" ' #[atk roll]
-    )
+return_string += f'-footer "{ctx.prefix}{ctx.alias}" '
 return return_string
 </drac2>
