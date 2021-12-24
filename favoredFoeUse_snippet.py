@@ -7,7 +7,7 @@ if cc_value >= num:
     cc_use = num
     character().mod_cc(cc_name, -cc_use)
     die = 4+2*int((RangerLevel+2)/8)
-    return_string = f' -d1 1d{die} -f "{cc_name}|When you hit a creature with an attack roll, you can call on your mystical bond with nature to mark the target as your favored enemy for 1 minute or until you lose your concentration (as if you were concentrating on a spell).\n\nThe first time on each of your turns that you hit the favored enemy and deal damage to it, including when you mark it, you can increase that damage by 1d4." '
+    return_string = f' -d{num} 1d{die} -f "{cc_name}|When you hit a creature with an attack roll, you can call on your mystical bond with nature to mark the target as your favored enemy for 1 minute or until you lose your concentration (as if you were concentrating on a spell).\n\nThe first time on each of your turns that you hit the favored enemy and deal damage to it, including when you mark it, you can increase that damage by 1d4." '
 else:
     cc_use = 0
     return_string = f' -f "No remaining {cc_name} uses|Damage was not added." '
