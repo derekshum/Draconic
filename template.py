@@ -1,6 +1,6 @@
 !alias template tembed #TODO
 <drac2>
-#cc_request = 1
+cc_request = 1
 #num_die = 1
 #crit_text = ""
 #is_resistant = False
