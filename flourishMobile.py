@@ -16,7 +16,7 @@ cc_value = character().get_cc(cc_name)
 if cc_value >= 1:
     cc_use = 1
     character().mod_cc(cc_name, -cc_use)
-    damage = vroll(str(num_die) + "d" + int((BardLevel / 5 + 3) * 2))
+    damage = vroll(str(num_die) + "d" + (int(BardLevel / 5 + 3) * 2))
     return_string = (
         f' -title "{name} uses {ability_name}!" '
         f' -desc "You can expend one use of your Bardic Inspiration to cause the weapon to deal extra damage to the target you hit. The damage equals the number you roll on the Bardic Inspiration die. You can also push the target up to 5 feet away from you, plus a number of feet equal to the number you roll on that die. You can then immediately use your reaction to move up to your walking speed to an unoccupied space within 5 feet of the target." '
