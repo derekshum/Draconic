@@ -1,3 +1,5 @@
+!cc create "Perfected Guardian" -min 0 -max proficiencyBonus -type bubble -reset long -desc "When a Huge or smaller creature you can see ends its turn within 30 feet of you, you can use your reaction to magically force the creature to make a Strength saving throw against your spell save DC, pulling the creature up to 30 feet toward you to an unoccupied space. If you pull the target to a space within 5 feet of you, you can make a melee weapon attack against it as part of this reaction."
+
 !alias template tembed #TODO
 <drac2>
 cc_request = 1
