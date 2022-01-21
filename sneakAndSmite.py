@@ -77,7 +77,7 @@ for i in range(len(s)):
     smite_mult = 1
     if c[i] or all_crit:
         smite_mult = 2
-    roll_string += (smite_mult * (s[i] + extra_smite)) + "d8+"
+    roll_string += (smite_mult * (min(4,s[i]) + extra_smite)) + "d8+" #max 5d8/6d8 vs fiends
     #TODO
 roll_string = roll_string[:len(roll_string) - 1]
 if is_resistant:
