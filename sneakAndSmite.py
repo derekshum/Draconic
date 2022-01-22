@@ -43,7 +43,7 @@ if len(s) == 0:
 else:   #check if adequate spell slots and resistance issue   
     s2 = [i for i in s]
     s2.sort()
-    current_level = s[0]
+    current_level = s2[0]
     current_level_count = 1
     for i in range(1, len(s2) + 1):
         if i == len(s2) or s2[i] != current_level:
@@ -78,7 +78,6 @@ for i in range(len(s)):
     if c[i] or all_crit:
         smite_mult = 2
     roll_string += (smite_mult * (min(4,s[i]) + extra_smite)) + "d8+" #max 5d8/6d8 vs fiends
-    #TODO
 roll_string = roll_string[:len(roll_string) - 1]
 if is_resistant:
     roll_string = "(" + roll_string + ")/2"
@@ -103,6 +102,6 @@ if len(spell_levels) > 0:
             character().spellbook.use_slot(spell_levels[i])
         return_string += f'\n{character().spellbook.slots_str(spell_levels[i])} (-{slots_used[i]})'
     return_string += f'" '
-return_string += f' -footer "{ctx.prefix}{ctx.alias} [?smite levels] [?res/vuln] [allCrit(n)]" '
+return_string += f' -footer "{ctx.prefix}{ctx.alias} [sneak or smite levels, crits] [fiend/undead] [res/vuln] [allCrit(n)]" '
 return return_string
 </drac2>
