@@ -55,10 +55,10 @@ if cc_value > 0:
             if (HD_roll.total % 2) == 0:
                 if HD_roll.total > character().temp_hp: 
                     character().set_temp_hp(HD_roll.total)
-                    return_string += f' -f "THP Increased|{hp_str()}|inline"'
+                    return_string += f' -f "THP Increased|{character().hp_str()}|inline"'
                 else:
-                    return_string += f' -f "THP Unchanged|{hp_str()}|inline"'
-                return_string += f' -f "Temporary Hit Points|!thp {str(HD_roll.total)}|inline"'
+                    return_string += f' -f "THP Unchanged|{character().hp_str()}|inline"'
+                # return_string += f' -f "Temporary Hit Points|!thp {str(HD_roll.total)}|inline"'
             else:
                 return_string += f' -f "Damage|{str(HD_roll.total)}|inline"'
         else:
@@ -69,10 +69,10 @@ else:
         f' -title "{name} fails to use {ability_name}!"'
         f' -desc "Take a short or long rest."'
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += f' -f "{cc_name} (-{cc_use})| {cc_current}|inline"'
 if HD_size != 0:
-    HD_current = cc_str(HD_name)
+    HD_current = character().cc_str(HD_name)
     return_string += f' -f "{HD_name} (-{HD_use})| {HD_current}|inline"'
 return_string += f' -footer "{ctx.prefix}{ctx.alias} [HD size (if using HD ability)] [other AC bonus (optional)]"'     
 return return_string
