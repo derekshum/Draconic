@@ -9,7 +9,7 @@ if cc_value >= 1:
 else:
     cc_use = 0
     return_string = f' -f "No {cc_name}|CC {cc_name} is currently at 0."'
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += f' -f "{cc_name} (-{cc_use})| {cc_current}|inline"'
 return return_string
 </drac2>
