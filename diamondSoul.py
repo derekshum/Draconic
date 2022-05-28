@@ -94,7 +94,7 @@ else:
             f' -f "Death Saves|Successes ({success_change}): {str(character().death_saves.successes)}/3\nFailures ({failure_change}): {str(character().death_saves.fails)}/3|inline" '
             )
     
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
         f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
         f' -footer "{ctx.prefix}{ctx.alias} [save] [?vantage] [?bonus] [?critDF]" '

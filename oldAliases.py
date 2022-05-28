@@ -3,7 +3,7 @@
 !alias balm embed 
 {{cc = "Channel Divinity"}}
 {{counterExists=cc_exists(cc)}}
-{{currentCC = get_cc(cc) if counterExists else 0}}
+{{currentCC = character().get_cc(cc) if counterExists else 0}}
 {{sufficientCC = currentCC >= 1}}
 {{set("heal", vroll("2d6 + " + str(wisdomMod)))}}
 {{mod_cc(cc, -1) if sufficientCC else ''}}
@@ -47,8 +47,8 @@ return return_string
 {{args = "%1%%"}}{{args=args[:args.index("%")]}}
 {{crit = "crit" in args or "c" in args}}
 {{cc = "Ki Points"}}
-{{kiCounterExists = cc_exists(cc)}}
-{{currentKi = get_cc(cc) if kiCounterExists else 0}}
+{{kiCounterExists = character().cc_exists(cc)}}
+{{currentKi = character().get_cc(cc) if kiCounterExists else 0}}
 {{sufficientKi = currentKi >= 1}}
 {{mod_cc(cc, -1) if sufficientKi else ''}}
 {{set("num", 2 if crit else 1)}}
@@ -59,7 +59,7 @@ return return_string
 -f "{{cc}} ({{1 if sufficientKi else 0}} used)| {{cc_str(cc) if kiCounterExists else f'No {cc} counter.'}}|inline"
 -footer "{{ctx.prefix}}{{ctx.alias}} [crit (or c) if crit]"
 
-!alias embolden embed {{cc = "Emboldening Bond"}}{{counterExists=cc_exists(cc)}}{{currentCC = get_cc(cc) if counterExists else 0}}{{sufficientCC = currentCC >= 1}}{{'cc "Emboldening Bond" -1' if sufficientCC else ''}}
+!alias embolden embed {{cc = "Emboldening Bond"}}{{counterExists=cc_exists(cc)}}{{currentCC = character().get_cc(cc) if counterExists else 0}}{{sufficientCC = currentCC >= 1}}{{'cc "Emboldening Bond" -1' if sufficientCC else ''}}
 {{mod_cc(cc, -1) if sufficientCC else ''}}
 -title {{'"You do not have a counter set up for {cc}."' if not counterExists else f''' -title "{name} uses Emboldening Bond!" -desc "As an action, you choose a number of willing creatures within 30 feet of you (this can include yourself) equal to your proficiency bonus ({proficiencyBonus}). You create a magical bond among them for 10 minutes or until you use this feature again. While any bonded creature is within 30 feet of another, the creature can roll a d4 and add the number rolled to an attack roll, an ability check, or a saving throw it makes. Each creature can add the d4 no more than once per turn." ''' if sufficientCC else f''' -title "{name} tried to use Emboldening Bond" -desc "You do not have any remaining uses of {cc}. Take a long rest." '''}}
 -f "{{cc}} ({{1 if sufficientCC else 0}} used)| {{cc_str(cc) if counterExists else f'No {cc} counter.'}}|inline"
@@ -72,8 +72,8 @@ return return_string
 {{kiSpend = int(args) if args.isdigit() else 1}}
 {{outOfKiRange = (kiSpend < 1 or kiSpend > 3)}}
 {{cc = "Ki Points"}}
-{{kiCounterExists = cc_exists(cc)}}
-{{currentKi = get_cc(cc) if kiCounterExists else 0}}
+{{kiCounterExists = character().cc_exists(cc)}}
+{{currentKi = character().get_cc(cc) if kiCounterExists else 0}}
 {{legalKi = not outOfKiRange and currentKi >= kiSpend}}
 {{mod_cc(cc, -kiSpend) if legalKi else ''}}
 {{f''' -title "Focused Aim must use 1 to 3 {cc} " -desc "Enter a number of {cc} between 1 and 3." ''' if outOfKiRange else f''' -title "{name} uses Focused Aim!" -desc "When you miss with an attack roll, you can spend 1 to 3 ki points to increase your attack roll by 2 for each of these ki points you spend, potentially turning the miss into a hit." -f "Attack Bonus|+{kiSpend * 2}|inline" ''' if legalKi else f''' -title "{name} tries to use Focused Aim" -desc "{'Insufficient ' if kiCounterExists else 'No '} {cc}! {'Take a short or long rest to regain ' if kiCounterExists else 'Create a CC for '} {cc}." -f "Attempted {cc} Use|{kiSpend}|inline" ''' }}
@@ -82,12 +82,12 @@ return return_string
 
 !alias harness1 embed 
 {{cc1 = "Channel Divinity"}}
-{{counterExists1 = cc_exists(cc1)}}
-{{currentCC1 = get_cc(cc1) if counterExists1 else 0}}
+{{counterExists1 = character().cc_exists(cc1)}}
+{{currentCC1 = character().get_cc(cc1) if counterExists1 else 0}}
 {{sufficientCC1 = currentCC1 >= 1}}
 {{cc2 = "Harness Divine Power"}}
-{{counterExists2 = cc_exists(cc1)}}
-{{currentCC2 = get_cc(cc2) if counterExists2 else 0}}
+{{counterExists2 = character().cc_exists(cc1)}}
+{{currentCC2 = character().get_cc(cc2) if counterExists2 else 0}}
 {{sufficientCC2= currentCC2 >= 1}}
 {{go = sufficientCC1 and sufficientCC2 and get_slots(1) < get_slots_max(1)}}
 {{mod_cc(cc1, -1) if go else ''}}
@@ -103,12 +103,12 @@ return return_string
 
 !alias harness2 embed 
 {{cc1 = "Channel Divinity"}}
-{{counterExists1 = cc_exists(cc1)}}
-{{currentCC1 = get_cc(cc1) if counterExists1 else 0}}
+{{counterExists1 = character().cc_exists(cc1)}}
+{{currentCC1 = character().get_cc(cc1) if counterExists1 else 0}}
 {{sufficientCC1 = currentCC1 >= 1}}
 {{cc2 = "Harness Divine Power"}}
-{{counterExists2 = cc_exists(cc1)}}
-{{currentCC2 = get_cc(cc2) if counterExists2 else 0}}
+{{counterExists2 = character().cc_exists(cc1)}}
+{{currentCC2 = character().get_cc(cc2) if counterExists2 else 0}}
 {{sufficientCC2= currentCC2 >= 1}}
 {{go = sufficientCC1 and sufficientCC2 and get_slots(2) < get_slots_max(2)}}
 {{mod_cc(cc1, -1) if go else ''}}
@@ -124,12 +124,12 @@ return return_string
 
 !alias harness3 embed 
 {{cc1 = "Channel Divinity"}}
-{{counterExists1 = cc_exists(cc1)}}
-{{currentCC1 = get_cc(cc1) if counterExists1 else 0}}
+{{counterExists1 = character().cc_exists(cc1)}}
+{{currentCC1 = character().get_cc(cc1) if counterExists1 else 0}}
 {{sufficientCC1 = currentCC1 >= 1}}
 {{cc2 = "Harness Divine Power"}}
-{{counterExists2 = cc_exists(cc1)}}
-{{currentCC2 = get_cc(cc2) if counterExists2 else 0}}
+{{counterExists2 = character().cc_exists(cc1)}}
+{{currentCC2 = character().get_cc(cc2) if counterExists2 else 0}}
 {{sufficientCC2= currentCC2 >= 1}}
 {{go = sufficientCC1 and sufficientCC2 and get_slots(3) < get_slots_max(3)}}
 {{mod_cc(cc1, -1) if go else ''}}
@@ -143,7 +143,7 @@ return return_string
 -f "{{cc2}} (-{{1 if go else 0}})|{{cc_str(cc2) if counterExists2 else f'No {cc2} counter.'}}|inline"
 -footer "{{ctx.prefix}}{{ctx.alias}}"
 
-!alias hhelm {{cc = "Helm of the Gods"}}{{counterExists=cc_exists(cc)}}{{currentCC = get_cc(cc) if counterExists else 0}}{{sufficientCC = currentCC >= 1}}{{'cast "hellish rebuke" -dc 13 -i' if sufficientCC else 'embed'}}
+!alias hhelm {{cc = "Helm of the Gods"}}{{counterExists=cc_exists(cc)}}{{currentCC = character().get_cc(cc) if counterExists else 0}}{{sufficientCC = currentCC >= 1}}{{'cast "hellish rebuke" -dc 13 -i' if sufficientCC else 'embed'}}
 {{mod_cc(cc, -1) if sufficientCC else ''}}
 -title {{'"You do not have a counter set up for your Helm of the Gods."' if not counterExists else f'''"{name} uses their Helm of the Gods to Cast Hellish Rebuke!"''' if sufficientCC else '''"You do not have any remaining uses of you Helm of the Gods. Take a long rest."'''}}
 -f "{{cc}} ({{1 if sufficientCC else 0}} used)| {{cc_str(cc) if counterExists else f'No {cc} counter.'}}|inline"
@@ -151,8 +151,8 @@ return return_string
 
 !alias quickened embed 
 {{cc = "Ki Points"}}
-{{kiCounterExists = cc_exists(cc)}}
-{{currentKi = get_cc(cc) if kiCounterExists else 0}}
+{{kiCounterExists = character().cc_exists(cc)}}
+{{currentKi = character().get_cc(cc) if kiCounterExists else 0}}
 {{sufficientKi = currentKi >= 2}}
 {{mod_cc(cc, -2) if sufficientKi else ''}}
 {{initialHP = get_hp()}}

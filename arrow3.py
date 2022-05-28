@@ -22,7 +22,7 @@ else:
     return_string = (
         f'-title "{name} doesn\'t have {input} {ability_name} to use!" '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f'-footer "{ctx.prefix}{ctx.alias} [# used(optional)]" '

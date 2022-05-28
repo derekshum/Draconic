@@ -14,7 +14,7 @@ else:
     return_string = (
         f' -f "Fury of the Small unavailable|Take a rest." '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     )

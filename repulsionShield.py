@@ -17,7 +17,7 @@ else:
         f' -title "{name} fails to use their {ability_name}!" '
         f' -desc "It will recharge (a bit) at dawn." '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f'-footer "{ctx.prefix}{ctx.alias}"'

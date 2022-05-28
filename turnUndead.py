@@ -24,7 +24,7 @@ else:
         f' -title "{name} fails to {ability_name}!" '
         f' -desc "Take a rest." '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f'-footer "{ctx.prefix}{ctx.alias}" '

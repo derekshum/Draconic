@@ -17,7 +17,7 @@ else:
             b = "s were"
         return_string += f' -f "Not Enough {cc_name} Charges Left|The {n} remaining {cc_name} charge{b} expent." '
 cc_value = character().get_cc(cc_name)
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += f' -f "{cc_name} (-{cc_use})| {cc_current}|inline"'
 return return_string
 </drac2>

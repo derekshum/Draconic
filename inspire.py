@@ -22,7 +22,7 @@ else:
         f' -title "{name} cannot mechanically inspire!" '
         f' -desc "No {cc_name} remaining." '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias} [uses]" '
@@ -95,7 +95,7 @@ else:
         f' -title "{name} cannot mechanically inspire!" '
         f' -desc "No {cc_name} remaining." '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias} [uses]" '

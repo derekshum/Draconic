@@ -3,10 +3,10 @@
 cc_name = "Embodiment of Law"
 ability_name = cc_name
 cc_value = 0
-cc_value = get_cc(cc_name)
+cc_value = character().get_cc(cc_name)
 if cc_value > 0:
     cc_use = 1
-    mod_cc(cc_name, -cc_use)
+    character().mod_cc(cc_name, -cc_use)
     return_string = (
         f'-f "{ability_name}|If you cast a spell of the enchantment school using a spell slot of 1st level or higher, you can change the spell\'s casting time to 1 bonus action for this casting, provided the spell\'s casting time is normally 1 action." '
         )

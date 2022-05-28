@@ -37,7 +37,7 @@ else:
         return_string += f' -f "New Attack Roll | {disp_num} + {attack_roll_bonus} = {disp_num + attack_roll_bonus}|inline" '
     else:
         return_string += f' -f "Attack Roll Bonus | +{attack_roll_bonus}|inline" '
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias} [# ki (optional, 1-3, default 1)] [initial attack roll]" '

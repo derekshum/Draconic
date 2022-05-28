@@ -39,7 +39,7 @@ else:
             f' -f "Healing|{str(former_hp)} + 0 = {str(character().hp)}/{str(character().max_hp)}|inline" '
             f' -f "Unused healing|!hp {str(max_heal.total)}|inline" '
             ) 
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias}" '

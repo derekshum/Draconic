@@ -20,7 +20,7 @@ else:
         f'-title "{name} fails to activate their {cc_name}!" '
         f'-desc "Take a long rest." '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f'-f "HP|{character().hp_str()}|inline" '
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '

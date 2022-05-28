@@ -25,7 +25,7 @@ else:
         f' -title "Not enough uses remaining in {name}\'s {cc_name}!" '
         f' -desc "Re-store at the end of a long rest." '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias} [uses]" '

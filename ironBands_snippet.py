@@ -10,7 +10,7 @@ if cc_value >= num:
 else:
     cc_use = 0
     return_string = f' -f "Iron Bands of Binding have already been used|Once the bands are used, they can\'t be used again until the next dawn." '
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
 return return_string
 </drac2>

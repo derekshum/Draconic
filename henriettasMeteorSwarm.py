@@ -16,7 +16,7 @@ if character().spellbook.get_slots(current_level) >= 1 and cc1_val >= 1 and cc2_
     damage = vroll(roll_string)
     return_string = (
         f' -title "{name} {ability_name}!" '
-        f' -desc "**Damage:**{str(damage)}\n**DC:**{int(get_raw().spellbook.dc)}\nDEX Save" '
+        f' -desc "**Damage:**{str(damage)}\n**DC:**{int(character().spellbook.dc)}\nDEX Save" '
         f' -f "Effect|Each creature in a 40-foot-radius sphere centered on each point you choose must make a Dexterity saving throw. The sphere spreads around corners. A creature takes 20d6 fire damage and 20d6 bludgeoning damage on a failed save, or half as much damage on a successful one." '
         f' -f "Transmuted Spell|When you cast a spell that deals a type of damage from the following list, you can spend 1 sorcery point to change that damage type to one of the other listed types: acid, cold, fire, lightning, poison, thunder." '
         f' -f "Destructive Wrath|You can use your Channel Divinity to wield the power of the storm with unchecked ferocity. When you roll lightning or thunder damage, you can use your Channel Divinity to deal maximum damage, instead of rolling." '
@@ -29,8 +29,8 @@ else:
         f' -title "{name} fails to {ability_name}!" '
         f' -desc "One or more of the following is unavailable: level {spell_level} spell slot, {cc1_name}, or {cc2_name}." '
         )
-cc1_current = cc_str(cc1_name)
-cc2_current = cc_str(cc2_name)
+cc1_current = character().cc_str(cc1_name)
+cc2_current = character().cc_str(cc2_name)
 return_string += (
     f'-f "{cc1_name} (-{cc1_use})| {cc1_current}|inline" '
     f'-f "{cc2_name} (-{cc2_use})| {cc2_current}|inline" '

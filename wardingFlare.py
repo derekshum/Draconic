@@ -19,7 +19,7 @@ else:
         f' -desc "**Warding Flare**\n\nYou can interpose divine light between yourself and an attacking enemy.\n\nWhen you are attacked by a creature within 30 feet of you that you can see, you can use your reaction to impose disadvantage on the attack roll, causing light to flare before the attacker before it hits or misses.\n\nAn attacker that can''t be blinded is immune to this feature." '
         f' -image https://cdn.discordapp.com/attachments/714291596102860851/846227679779094528/2b5d08367f6cb1dcb5bacf95aba29381.gif -color <color> -thumb <image> '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias}" '

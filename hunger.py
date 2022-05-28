@@ -37,7 +37,7 @@ else:
         f' -f "Kill Heal|!hp {damage.total}|inline" '
         f' -f "Current HP|{character().hp_str()}|inline" '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias} [?crit(n)]" '

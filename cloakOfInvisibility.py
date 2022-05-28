@@ -1,4 +1,4 @@
-!alias cloak tembed
+!alias coi tembed
 <drac2>
 input = 1
 if len(&ARGS&) > 0:
@@ -24,7 +24,7 @@ else:
         f' -title "{name} cannot wear {ability_name} for {cc_use} minute{plural}!" '
         f' -desc "" '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f'-footer "{ctx.prefix}{ctx.alias} [minutes (optional, 1)]" '

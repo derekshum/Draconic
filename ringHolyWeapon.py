@@ -18,7 +18,7 @@ else:
         f' -title "{name} casts {ability_name} from their {cc_name}!" '
         f' -desc "You imbue a weapon you touch with holy power. Until the spell ends, the weapon emits bright light in a 30-foot radius and dim light for an additional 30 feet. In addition, weapon attacks made with it deal an extra 2d8 radiant damage on a hit. If the weapon isn''t already a magic weapon, it becomes one for the duration..." '
         )
-cc_current = cc_str(cc_name)
+cc_current = character().cc_str(cc_name)
 return_string += (
     f'-f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f'-footer "{ctx.prefix}{ctx.alias}"'

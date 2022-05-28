@@ -1,6 +1,6 @@
 !cc create "Mirror Images" -min 0 -max 3 -type bubble -reset short -resetto 0
 
-!snippet mi tembed 
+tembed 
 <drac2> 
 character().mod_cc("Mirror Images", 3) 
 cc_name = "Mirror Images"
@@ -24,7 +24,7 @@ if len(&ARGS&) > 0:
     to_hit_set = True
     cc_txt = " (-0)"
 cc_name = "Mirror Images"
-cc_value = get_cc(cc_name)
+cc_value = character().get_cc(cc_name)
 if cc_value > 0:
     return_string = (
         f'-desc "A creature is unaffected by this spell if it can\'t see, if it relies on senses other than sight, such as blindsight, or if it can perceive illusions as false, as with truesight." '
@@ -51,8 +51,8 @@ if cc_value > 0:
                     f'-title "A Mirror Image is Hit!" '
                     f'-f "Mirror Image Hit| AC {ac} <= {to_hit} |inline" '           
                     )                
-                mod_cc(cc_name, -1)
-                cc_current = cc_str(cc_name)
+                character().mod_cc(cc_name, -1)
+                cc_current = character().cc_str(cc_name)
                 cc_txt = " (-1)"
         else:
             return_string += (

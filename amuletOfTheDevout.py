@@ -29,8 +29,8 @@ else:
         f' -title "{name} uses their {cc_name}!" '
         f' -desc "While you wear this amulet, you can use your Channel Divinity feature without expending one of the feature’s uses. Once this property is used, it can’t be used again until the next dawn." '
         )
-cc_current = cc_str(cc_name)
-cc_recharge_current = cc_str(cc_recharge_name)
+cc_current = character().cc_str(cc_name)
+cc_recharge_current = character().cc_str(cc_recharge_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
     f' -f "{cc_recharge_name} (+{cc_recharge_change})| {cc_recharge_current}|inline" '
