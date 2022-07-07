@@ -47,10 +47,10 @@ else:
         g = 1
         character().mod_cc(c, g)
     return_string += (    
-        f' -f "{c} (+{g})| {cc_str(c)}|inline" '
+        f' -f "{c} (+{g})| {character().cc_str(c)}|inline" '
         )
 return_string += (
-    f' -f "{a} (-{h})| {cc_str(a)}|inline" '
+    f' -f "{a} (-{h})| {character().cc_str(a)}|inline" '
     f' -footer "{ctx.prefix}{ctx.alias}" '
     )
 return return_string

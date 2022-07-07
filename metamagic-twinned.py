@@ -41,12 +41,12 @@ if character().cc_exists(cn1):
     cc_use_string_1 = ""
     if cu1 > 0:
         cc_use_string_1 = " (-" + cu1 + ")"
-    rs += (f'-f "{cn1} {cc_use_string_1}| {cc_str(cn1)}|inline" ')
+    rs += (f'-f "{cn1} {cc_use_string_1}| {character().cc_str(cn1)}|inline" ')
 if character().cc_exists(cn2):
     cc_use_string_2 = ""
     if cu2 > 0:
         cc_use_string_2 = " (-" + cu2 + ")"
-    rs += (f'-f "{cn2} {cc_use_string_2}| {cc_str(cn2)}|inline" ')
+    rs += (f'-f "{cn2} {cc_use_string_2}| {character().cc_str(cn2)}|inline" ')
 rs += (f'-footer "{ctx.prefix}{ctx.alias}"')
 return rs
 </drac2>

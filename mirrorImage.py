@@ -1,10 +1,10 @@
 !cc create "Mirror Images" -min 0 -max 3 -type bubble -reset short -resetto 0
 
-tembed 
+!snippet mi tembed 
 <drac2> 
 character().mod_cc("Mirror Images", 3) 
 cc_name = "Mirror Images"
-return_string = f'-f "{cc_name}|{cc_str(cc_name)}" '
+return_string = f'-f "{cc_name}|{character().cc_str(cc_name)}" '
 return return_string
 </drac2>
 
@@ -71,7 +71,7 @@ else:
         f' -desc "`!cmi` will cast the spell and fill the cc." '
         )
 return_string += (
-    f'-f "{cc_name}|{cc_str(cc_name)}{cc_txt}|inline" '
+    f'-f "{cc_name}|{character().cc_str(cc_name)}{cc_txt}|inline" '
     f'-footer "{ctx.prefix}{ctx.alias} [atk roll]" '
     )
 return return_string

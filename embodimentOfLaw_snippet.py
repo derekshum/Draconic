@@ -18,6 +18,6 @@ else:
 cc_use_string = ""
 if cc_use > 0:
     cc_use_string = " -(" + cc_use + ")"
-return_string += (f'-f "{cc_name} {cc_use_string}| {cc_str(cc_name)}|inline" ')
+return_string += (f'-f "{cc_name} {cc_use_string}| {character().cc_str(cc_name)}|inline" ')
 return return_string
 </drac2>

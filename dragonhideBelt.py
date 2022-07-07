@@ -16,7 +16,7 @@ if cc_value >= cc_request:
         f' -title "{name} uses {ability_name}!" '
         f' -desc "You can use an action to regain ki points equal to a roll of your Martial Arts die." '
         f' -f "Ki Restoration|{str(ki_roll)}|inline" '
-        f' -f "Ki (+{ki_restore})|{cc_str(ki_cc)}|inline" '
+        f' -f "Ki (+{ki_restore})|{character().cc_str(ki_cc)}|inline" '
         )
 else:
     cc_use = 0
