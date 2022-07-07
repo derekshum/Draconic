@@ -6,7 +6,7 @@ cc_value = character().get_cc(cc_name)
 if cc_value >= 1:
     character().mod_cc(cc_name, -1)
     return_string = (
-        f' adv1 ea1 -d1 "{dice}" -f "{cc_name}|You can focus the power of the lenses to gain accuracy in combat, gaining advantage on a weapon attack roll (no action required). If that attack hits, roll one additional weapon damage die.\n**{cc_name}:** {character().cc_str(cc_name)}"'
+        f' adv1 eadv1 -d1 "{dice}" -f "{cc_name}|You can focus the power of the lenses to gain accuracy in combat, gaining advantage on a weapon attack roll (no action required). If that attack hits, roll one additional weapon damage die.\n**{cc_name}:** {character().cc_str(cc_name)}"'
         )
 else:
     return_string = (
