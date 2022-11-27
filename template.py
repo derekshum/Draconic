@@ -1,8 +1,8 @@
 !alias template tembed #TODO
 <drac2>
 cc_request = 1
-#num_die = 1
-#crit_text = ""
+num_die = 1
+crit_text = ""
 #is_resistant = False
 #is_vulnerable = False
 #for input in &ARGS&:
@@ -24,13 +24,13 @@ return_string = ""
 if cc_value >= cc_request:
     cc_use = cc_request
     character().mod_cc(cc_name, -cc_use)
-    if is_resistant and is_vulnerable:     
-        return_string += f' -f "Calculation Uncertainty|Resisted and Vulnerable damage may have a lower total than displayed due to rounding down odds." '    
     roll_string = str(num_die) + "d6"   #TODO
-    if is_resistant:
-        roll_string = "(" + roll_string + ")/2"
-    if is_vulnerable:
-        roll_string = "(" + roll_string + ")*2"
+    # if is_resistant and is_vulnerable:     
+    #     return_string += f' -f "Calculation Uncertainty|Resisted and Vulnerable damage may have a lower total than displayed due to rounding down odds." '    
+    # if is_resistant:
+    #     roll_string = "(" + roll_string + ")/2"
+    # if is_vulnerable:
+    #     roll_string = "(" + roll_string + ")*2"
     damage = vroll(roll_string)
     return_string = (
         f' -title "{name} uses {ability_name}!" '
@@ -46,7 +46,7 @@ else:
 cc_current = character().cc_str(cc_name)
 return_string += (
     f' -f "{cc_name} (-{cc_use})| {cc_current}|inline" '
-    f' -footer "{ctx.prefix}{ctx.alias} [uses] [crit] [res] [vuln]" '    #TODO: input specifications
+    f' -footer "{ctx.prefix}{ctx.alias} " ' #TODO: [uses] [crit] [res] [vuln]" '
     )
 return return_string
 </drac2>
