@@ -18,7 +18,7 @@ for input in &ARGS&:
         isResistant = True
     elif input == "vulnerable"[0:length] or input == "vulnerability"[0:length]:
         isVulnerable = True
-cc_name = "Blood Fury Tattoo"
+cc_name = "Astral Fury Tattoo"
 cc_value = character().get_cc(cc_name)
 return_string = ""
 if cc_value < cc_request:
@@ -37,18 +37,18 @@ else:
             return_string += f' -f "Calculation Uncertainty|Multiple resisted strikes may have a lower total than displayed due to rounding down odds." '
     if isVulnerable:
         roll_string += "*2"
-    roll_string += "[necrotic]"
+    roll_string += "[force]"
     damage = vroll(roll_string)
     if cc_use == 1:
-        num_text_1 = "a"
+        num_text_1 = "an"
         num_text_2 = ""
     else:
         num_text_1 = str(cc_use)
         num_text_2 = "s"
     
     return_string += (
-        f' -title "{name} makes {num_text_1} Bloodthirsty Strike{num_text_2}!" '
-        f' -desc "When you hit a creature with a weapon attack, you can expend a charge to deal an extra 4d6 necrotic damage to the target, and you regain a number of hit points equal to the necrotic damage dealt." '
+        f' -title "{name} makes {num_text_1} Astral Strike{num_text_2}!" '
+        f' -desc "When you hit a creature with a weapon attack, you can expend a charge to deal an extra 4d6 force damage to the target, and you regain a number of hit points equal to the force damage dealt." '
         f' -f "Damage{crit_text}|{str(damage)}|inline" '
         )
     former_hp = character().hp
