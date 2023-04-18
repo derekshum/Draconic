@@ -20,7 +20,7 @@ if cc_value_1 + cc_value_2 >= cost:
         cc_use_1 = cc_value_1
         cc_use_2 = cost - cc_value_1
         character().mod_cc(cc_name_1, -cc_use_1)
-        
+        character().mod_cc(cc_name_2, -cc_use_2)
     else:
         cc_use_2 = cost
         character().mod_cc(cc_name_2, -cc_use_2)
