@@ -17,8 +17,8 @@ crit_text = ""
 #        is_resistant = True
 #    elif input == "vulnerable"[0:length] or input == "vulnerability"[0:length]:
 #        is_vulnerable = True
-ability_name = ""   #TODO
 cc_name = ""    #TODO
+ability_name = ""   #TODO
 cc_value = character().get_cc(cc_name)
 return_string = ""
 if cc_value >= cc_request:
