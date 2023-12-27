@@ -32,7 +32,7 @@ if cc_value >= cc_request:
     damage = vroll(roll_string+"[thunder]")
     return_string = (
         f' -title "{name} {ability_name}!" '
-        f' -desc "When you make an attack with the ~~whip~~ dagger and hit, you can use your reaction to invoke the ~~whip\'s~~ dagger\'s rune. Doing so increases the extra ~~fire~~ thunder damage dealt by the whip to 2d6." '
+        f' -desc "When you make an attack with the ~~whip~~ dagger and hit, you can use your reaction to invoke the ~~whip\'s~~ dagger\'s rune. Doing so increases the extra ~~fire~~ thunder damage dealt by the ~~whip~~ dagger to 2d6." '
         f' -f "Damage{crit_text}|{str(damage)}|inline" '
         )
 else:
