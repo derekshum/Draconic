@@ -1,4 +1,4 @@
-!alias forceRune tembed
+!alias daggerForce tembed
 <drac2>
 cc_request = 1
 num_die = 2
